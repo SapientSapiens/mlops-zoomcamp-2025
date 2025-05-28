@@ -1,0 +1,16 @@
+artifact_uri: file:///home/ubuntu/mlops-zoomcamp/cohorts/2025/02-experiment-tracking/homework/mlruns/0/ecfd67cb4fd1417f950811f9a66d224d/artifacts
+deleted_time: 1748378369431
+end_time: 1748377801191
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: ecfd67cb4fd1417f950811f9a66d224d
+run_name: flawless-stag-422
+run_uuid: ecfd67cb4fd1417f950811f9a66d224d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748377776357
+status: 4
+tags: []
+user_id: ubuntu

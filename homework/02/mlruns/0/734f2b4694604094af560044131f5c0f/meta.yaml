@@ -1,0 +1,15 @@
+artifact_uri: file:///home/ubuntu/mlops-zoomcamp/cohorts/2025/02-experiment-tracking/homework/mlruns/0/734f2b4694604094af560044131f5c0f/artifacts
+end_time: 1748378331452
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 734f2b4694604094af560044131f5c0f
+run_name: rebellious-kit-446
+run_uuid: 734f2b4694604094af560044131f5c0f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748378307262
+status: 3
+tags: []
+user_id: ubuntu
