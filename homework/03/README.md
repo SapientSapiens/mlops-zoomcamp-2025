@@ -7,17 +7,21 @@ We'll use [the same NYC taxi dataset](https://www1.nyc.gov/site/tlc/about/tlc-tr
 ## Question 1. Select the Tool
 
 You can use the same tool you used when completing the module,
-or choose a different one for your homework.
+or choose a different one for your assignment.
 
 What's the name of the orchestrator you chose? 
 
  ### Answer : Prefect
+
+ ![alt text](images/prefect-server-start.png)
 
 ## Question 2. Version
 
 What's the version of the orchestrator? 
 
  ### Answer: 3.4.5 ###
+
+ ![alt text](<images/prefect -version.png>)
 
 ## Question 3. Creating a pipeline
 
@@ -89,6 +93,16 @@ Hint: print the `intercept_` field in the code block
 
  ### Answer: 24.77 ###
 
+ |                                                  |                                                        |
+ |--------------------------------------------------|--------------------------------------------------------|
+ |  ![alt text](images/mlflow-server-start.png)     |  ![alt text](<images/till q5-pre_orchestration.png>)   | 
+
+
+ |                                                       |                                                        |
+ |-------------------------------------------------------|--------------------------------------------------------|
+ |  ![alt text](images/sans-orchestration-mlflow-ui.png) | ![alt text](images/sans-orchestration-model-save.png)  |
+
+
 ## Question 6. Register the model 
 
 The model is trained, so let's save it with MLFlow.
@@ -101,3 +115,36 @@ Find the logged model, and find MLModel file. What's the size of the model? (`mo
 * 1,534
 
  ### Answer: 4,534 ###
+
+ ![alt text](images/Q6-with_orchestration.png)
+
+
+ |                                                           |                                                        |
+ |-----------------------------------------------------------|--------------------------------------------------------|
+ |    ![alt text](images/with-orchestration-mlflow-ui.png)   |  ![alt text](images/with-orchestration-model-save.png) | 
+
+
+ |                                       |                                      |
+ |---------------------------------------|--------------------------------------|
+ |  ![alt text](images/prefect-ui.png)   | ![alt text](images/prefect-flow.png) | 
+
+
+ |                                         |                                         |
+ |-----------------------------------------|-----------------------------------------|
+ |   ![alt text](images/prefect-DAG.png)   | ![alt text](images/prefect-Lineage.png) | 
+
+
+
+
+## P.S. : While working with this assignment I ran into Out of Memory Error 
+
+ ### I was on a EC2 instance with 16GB RAM, and I could have easily added another 16GB to it. But refrained from doing so as I wanted to see what could have been done in a local machine/laptop and set to find out alternatives. Now the EC2 instance had 30GB storage (in a local setup we would usually have half to one TB, so we can spare storage). So I decided to add 20 GB staorage to the EC2 compute instance making it 50 GB out of which I made a 30 GB swap file!! ###
+
+ |                                  |                                 |
+ |----------------------------------|---------------------------------|
+ |   ![alt text](images/error1.png) |  ![alt text](images/error2.png) | 
+
+
+ ### With that and other measures (mentioned at [__FAQ__](https://docs.google.com/document/d/12TlBfhIiKtyBv8RnsoJR6F72bkPDGEvPOItJIxaEzE0/edit?tab=t.0#heading=h.5fyavk64e3fk) ), I ran the pipeline (without Prefect) and found out that the run consumes maximum 13 GB of swap file (16GB RAM already 100% consumed!) to successfully complete. So replaced the swap file with a 16GB one to save space.
+
+ ### Next I executed the same tasks of the pipeline in a workflow with Prefect (still continuing with experiment tracking through MLflow) and the 16GB swap file also made possible the execution of the flow.
