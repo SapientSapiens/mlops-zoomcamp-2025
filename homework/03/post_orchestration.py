@@ -55,7 +55,7 @@ def read_dataframe(filename):
 
 
 # -----------------------------------------------------------------------------
-# Data Transformation
+# Feature engineering and Data Transformation
 # -
 @task(retries=3, retry_delay_seconds=2)
 def transform_data(df):
@@ -73,7 +73,7 @@ def transform_data(df):
  
     
 # -----------------------------------------------------------------------------
-# Feature engineering and preprocessing
+#  Data preprocessing
 # -----------------------------------------------------------------------------
 @task
 def preparing_data_for_ML(df):
