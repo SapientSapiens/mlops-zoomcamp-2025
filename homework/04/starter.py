@@ -61,7 +61,7 @@ def save_predictions(year, month, df, y_pred):
     # verify the data in the saved file
     print(f"successfully saved the file :  {output_file}")
     df_check = pd.read_parquet(output_file, engine='pyarrow')
-    print(f" Shape of data in the file {df_check.shape}\n")         # Should match (3316216, 2)
+    print(f" Shape of data in the file {df_check.shape}\n")         # Should match df.shape
     print(f" Null values in the dataframe {df_check.isnull().sum()}") # Check for unexpected nulls
 
 
