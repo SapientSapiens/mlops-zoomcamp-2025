@@ -1,150 +1,55 @@
-# 5. Model Monitoring
-
-## 5.1 Intro to ML monitoring
-
-<a href="https://www.youtube.com/watch?v=SQ0jBwd_3kk&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/SQ0jBwd_3kk">
-</a>
-
-
-
-## 5.2 Environment setup
-
-<a href="https://www.youtube.com/watch?v=yixA3C1xSxc&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/yixA3C1xSxc">
-</a>
-
-
-
-## 5.3 Prepare reference and model
-
-<a href="https://www.youtube.com/watch?v=IjNrkqMYQeQ&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/IjNrkqMYQeQ">
-</a>
-
-
-
-## 5.4 Evidently metrics calculation
-
-<a href="https://www.youtube.com/watch?v=kP3lzh_HfWY&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/kP3lzh_HfWY">
-</a>
-
-
-## 5.5 Evidently Monitoring Dashboard
-
-<a href="https://www.youtube.com/watch?v=zjvYhDPzFlY&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/zjvYhDPzFlY">
-</a>
-
-
-## 5.6 Dummy monitoring
-
-<a href="https://www.youtube.com/watch?v=s3G4PMsOMOA&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/s3G4PMsOMOA">
-</a>
-
-
-
-## 5.7 Data quality monitoring
-
-<a href="https://www.youtube.com/watch?v=fytrmPbcLhI&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/fytrmPbcLhI">
-</a>
-
-> Note: in this video we use Prefect (07:33-11:21). Feel free to skip this part. Also note that Prefect
-is not officially supported in the 2024 edition of the course.
-
-
-## 5.8 Save Grafana Dashboard
-
-<a href="https://www.youtube.com/watch?v=-c4iumyZMyw&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/-c4iumyZMyw">
-</a>
-
-
-
-## 5.9 Debugging with test suites and reports
-
-<a href="https://www.youtube.com/watch?v=sNSk3ojISh8&list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK">
-  <img src="https://markdown-videos-api.jorgenkh.no/youtube/sNSk3ojISh8">
-</a>
-
-
 ## Homework
 
-
-More information [here](../cohorts/2025/05-monitoring/homework.md)
-
-
-## Notes
-
-Did you take notes? Add them here:
-
-* [Week 5 notes by M. Ayoub C.](https://gist.github.com/Qfl3x/aa6b1bec35fb645ded0371c46e8aafd1)
-* [week 5: Monitoring notes Ayoub.B](https://github.com/ayoub-berdeddouch/mlops-journey/blob/main/monitoring-05.md)
-* [Week 5: 2023](https://github.com/dimzachar/mlops-zoomcamp/tree/master/notes/Week_5)
-* [Week5: Why we need to monitor models after deployment? by Hongfan (Amber)](https://github.com/Muhongfan/MLops/blob/main/05-monitoring/README.md)
-* Send a PR, add your notes above this line
+The goal of this homework is to familiarize users with monitoring for ML batch services, using PostgreSQL database to store metrics and Grafana to visualize them.
 
 
 
-# Monitoring example
+## Q1. Prepare the dataset
 
-## Prerequisites
+Start with `baseline_model_nyc_taxi_data.ipynb`. Download the March 2024 Green Taxi data. We will use this data to simulate a production usage of a taxi trip duration prediction service.
 
-You need following tools installed:
-- `docker`
-- `docker-compose` (included to Docker Desktop for Mac and Docker Desktop for Windows )
+What is the shape of the downloaded data? How many rows are there?
 
-## Preparation
-
-Note: all actions expected to be executed in repo folder.
-
-- Create virtual environment and activate it (eg. `python -m venv venv && source ./venv/bin/activate` or `conda create -n venv python=3.11 && conda activate venv`)
-- Install required packages `pip install -r requirements.txt`
-- Run `baseline_model_nyc_taxi_data.ipynb` for downloading datasets, training model and creating reference dataset 
-
-## Monitoring Example
-
-### Starting services
-
-To start all required services, execute:
-```bash
-docker-compose up
-```
-
-It will start following services:
-- `db` - PostgreSQL, for storing metrics data
-- `adminer` - database management tool
-- `grafana` - Visual dashboarding tool 
+* 72044
+* 78537 
+* 57457
+* 54396
 
 
-### Sending data
+## Q2. Metric
 
-To calculate evidently metrics with prefect and send them to database, execute:
-```bash
-python evidently_metrics_calculation.py
-```
+Let's expand the number of data quality metrics we’d like to monitor! Please add one metric of your choice and a quantile value for the `"fare_amount"` column (`quantile=0.5`).
 
-This script will simulate batch monitoring. Every 10 seconds it will collect data for a daily batch, calculate metrics and insert them into database. This metrics will be available in Grafana in preconfigured dashboard. 
+Hint: explore evidently metric `ColumnQuantileMetric` (from `evidently.metrics import ColumnQuantileMetric`) 
 
-### Accsess dashboard
+What metric did you choose?
 
-- In your browser go to a `localhost:3000`
-The default username and password are `admin`
 
-- Then navigate to `General/Home` menu and click on `Home`.
+## Q3. Monitoring
 
-- In the folder `General` you will see `New Dashboard`. Click on it to access preconfigured dashboard.
+Let’s start monitoring. Run expanded monitoring for a new batch of data (March 2024). 
 
-### Ad-hoc debugging
+What is the maximum value of metric `quantile = 0.5` on the `"fare_amount"` column during March 2024 (calculated daily)?
 
-Run `debugging_nyc_taxi_data.ipynb` to see how you can perform a debugging with help of Evidently `TestSuites` and `Reports`
+* 10
+* 12.5
+* 14.2
+* 14.8
 
-### Stopping services
 
-To stop all services, execute:
-```bash
-docker-compose down
-```
+## Q4. Dashboard
+
+
+Finally, let’s add panels with new added metrics to the dashboard. After we customize the  dashboard let's save a dashboard config, so that we can access it later. Hint: click on “Save dashboard” to access JSON configuration of the dashboard. This configuration should be saved locally.
+
+Where to place a dashboard config file?
+
+* `project_folder` (05-monitoring)
+* `project_folder/config`  (05-monitoring/config)
+* `project_folder/dashboards`  (05-monitoring/dashboards)
+* `project_folder/data`  (05-monitoring/data)
+
+
+## Submit the results
+
+* Submit your answers here: https://courses.datatalks.club/mlops-zoomcamp-2025/homework/hw5
