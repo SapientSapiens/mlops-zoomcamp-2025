@@ -15,6 +15,7 @@ What is the shape of the downloaded data? How many rows are there?
 * 57457
 * 54396
 
+### Answer _57457_
 
 ## Q2. Metric
 
@@ -24,6 +25,7 @@ Hint: explore evidently metric `ColumnQuantileMetric` (from `evidently.metrics i
 
 What metric did you choose?
 
+### Answer _ColumnQuantileMetric_
 
 ## Q3. Monitoring
 
@@ -36,6 +38,7 @@ What is the maximum value of metric `quantile = 0.5` on the `"fare_amount"` colu
 * 14.2
 * 14.8
 
+### Answer _14.2_
 
 ## Q4. Dashboard
 
@@ -50,6 +53,4 @@ Where to place a dashboard config file?
 * `project_folder/data`  (05-monitoring/data)
 
 
-## Submit the results
-
-* Submit your answers here: https://courses.datatalks.club/mlops-zoomcamp-2025/homework/hw5
+### Answer _`project_folder/dashboards`  (05-monitoring/dashboards)_
