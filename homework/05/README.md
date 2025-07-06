@@ -27,6 +27,8 @@ What metric did you choose?
 
 ### Answer _ColumnQuantileMetric_
 
+### Link to the [assignment notebook](baseline_model_nyc_taxi_data-homework.ipynb)
+
 ## Q3. Monitoring
 
 Let’s start monitoring. Run expanded monitoring for a new batch of data (March 2024). 
@@ -39,6 +41,12 @@ What is the maximum value of metric `quantile = 0.5` on the `"fare_amount"` colu
 * 14.8
 
 ### Answer _14.2_
+
+|                                                            |                                 |
+|------------------------------------------------------------|---------------------------------|
+|   ![alt text](<images/Screenshot 2025-07-02 021954.jpg>)   |  ![ alt text](images/2.jpg)     | 
+
+
 
 ## Q4. Dashboard
 
@@ -54,3 +62,20 @@ Where to place a dashboard config file?
 
 
 ### Answer _`project_folder/dashboards`  (05-monitoring/dashboards)_
+
+### The script [__evidently_metrics_calculation.py script__](evidently_metrics_calculation.py) was accordingly modified to accomodate the fare amount 0.5 quantile.
+
+
+|                                    |                                    |
+|------------------------------------|------------------------------------|
+|   ![alt text](images/Prefect.jpg)  |  ![alt text](images/database.jpg)  | 
+
+
+### Panels showcasing the 4 metrics were added to the dashboard at Grafana 
+
+|                                           |
+|-------------------------------------------|
+|  ![alt text](<images/fare quantile.jpg>)  | 
+
+
+### And the dashboard configuration has been saved to a json file under the dashboard directory with the name [data_drift.json](dashboards/data_drift.json)
