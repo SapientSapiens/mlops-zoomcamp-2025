@@ -14,6 +14,7 @@ from prefect import task, flow
 from evidently.report import Report
 from evidently import ColumnMapping
 from evidently.metrics import ColumnDriftMetric, DatasetDriftMetric, DatasetMissingValuesMetric
+from evidently.metrics import ColumnQuantileMetric
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
 
@@ -26,7 +27,8 @@ create table dummy_metrics(
 	timestamp timestamp,
 	prediction_drift float,
 	num_drifted_columns integer,
-	share_missing_values float
+	share_missing_values float,
+	fare_amount_quantile_values float
 )
 """
 
@@ -49,7 +51,8 @@ column_mapping = ColumnMapping(
 report = Report(metrics = [
     ColumnDriftMetric(column_name='prediction'),
     DatasetDriftMetric(),
-    DatasetMissingValuesMetric()
+    DatasetMissingValuesMetric(),
+	ColumnQuantileMetric(column_name="fare_amount", quantile=0.5)
 ])
 
 @task
@@ -77,10 +80,11 @@ def calculate_metrics_postgresql(curr, i):
 	prediction_drift = result['metrics'][0]['result']['drift_score']
 	num_drifted_columns = result['metrics'][1]['result']['number_of_drifted_columns']
 	share_missing_values = result['metrics'][2]['result']['current']['share_of_missing_values']
+	fare_amount_quantile_values = result["metrics"][3]["result"]["current"]["value"]
 
 	curr.execute(
-		"insert into dummy_metrics(timestamp, prediction_drift, num_drifted_columns, share_missing_values) values (%s, %s, %s, %s)",
-		(begin + datetime.timedelta(i), prediction_drift, num_drifted_columns, share_missing_values)
+		"insert into dummy_metrics(timestamp, prediction_drift, num_drifted_columns, share_missing_values, fare_amount_quantile_values) values (%s, %s, %s, %s, %s)",
+		(begin + datetime.timedelta(i), prediction_drift, num_drifted_columns, share_missing_values, fare_amount_quantile_values	)
 	)
 
 @flow
