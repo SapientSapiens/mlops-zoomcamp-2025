@@ -71,7 +71,7 @@ Where to place a dashboard config file?
 |   ![alt text](images/Prefect.jpg)  |  ![alt text](images/database.jpg)  | 
 
 
-### Panels showcasing the 4 metrics were added to the dashboard at Grafana 
+### Panels showcasing the 4 metrics that were added to the dashboard at Grafana 
 
 |                                           |
 |-------------------------------------------|
