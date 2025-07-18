@@ -1,0 +1,15 @@
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - AWS_ACCESS_KEY_ID=foo123
+      - AWS_SECRET_ACCESS_KEY=bar456
+      - DEBUG=1
+    volumes:
+      - type: bind
+        source: ./localstack_datastore
+        target: /var/lib/localstack
+        read_only: false
